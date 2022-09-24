@@ -1,0 +1,163 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+	height: 100%;
+  background: #EFF2F5;
+}
+
+/* 更改全局输入框长度 */
+.el-form .el-input, .el-form .el-textarea {
+  width: 350px;
+}
+
+/* 表格上的搜索加上 id:search */
+#search {
+  font-size: 14px;
+  color: #606266;
+}
+
+#search .el-input {
+  width: 180px;
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+#content {
+  position: relative;
+  min-height: 91vh;
+}
+
+#exporter {
+  height: 60px;
+  line-height: 60px;
+  margin: 20px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+/* 定义主题颜色 */
+.color-primary {
+  color: #409EFF;
+}
+.color-success {
+  color: #67C23A;
+}
+.color-danger {
+  color: #F56C6C;
+}
+.color-warning {
+  color: #E6A23C;
+}
+.color-info {
+  color: #909399;
+}
+
+/* 悬停小爪 */
+.cursor:hover {
+  cursor: pointer;
+}
+
+/* 文字超出部分显示... */
+.overflow-dot {
+  text-overflow :ellipsis; /*让截断的文字显示为点点。还有一个值是clip意截断不显示点点*/
+  white-space :nowrap; /*让文字不换行*/
+  overflow : hidden; /*超出要隐藏*/
+}
+
+/* 弹性伸缩 */
+.flex {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  vertical-align: top;
+}
+
+.flex-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 0 1 auto;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.size14 {
+  font-size: 14px;
+}
+
+.size16 {
+  font-size: 16px;
+}
+
+.size18 {
+  font-size: 18px;
+}
+
+.size20 {
+  font-size: 20px;
+}
+
+.size24 {
+  font-size: 24px;
+}
+
+.size30 {
+  font-size: 30px;
+}
+
+.size36 {
+  font-size: 36px;
+}
+
+.el-card {
+  margin: 20px 20px 0 20px;
+}
+
+/* 阿里巴巴矢量库 */
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.arrow-up {
+  color: #44CA5F;
+  transform: rotate(180deg);
+}
+
+.arrow-down {
+  color: #FF3399;
+}
+

@@ -1,3 +1,6 @@
+## 介绍
+基于 vue-cli2 + elementUI 做的基本封装，有几个demo页面
+
 ## 环境参考
 ```
 node Version: 14.19.0

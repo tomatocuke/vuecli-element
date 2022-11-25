@@ -87,9 +87,9 @@ Vue.prototype.$rule = {
   ]
 }
 
-Vue.prototype.$api = {
-  login: '/v1/login', // 登录
-  config: '/v1/baseconfig', // 选项字典（国家、渠道、版本...)
-  'dashboard-index': '', // 数据总览
+// Vue.prototype.$api = {
+//   login: '/v1/login', // 登录
+//   config: '/v1/baseconfig', // 选项字典（国家、渠道、版本...)
+//   'dashboard-index': '', // 数据总览
 
-}
+// }

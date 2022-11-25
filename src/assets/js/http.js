@@ -16,7 +16,8 @@ const service = axios.create({
   // API 请求的默认前缀, 不要改这里，vue.config.js可以配置代理
   baseURL: '/api',
   // 超时时间 单位是ms
-  timeout: 10 * 1000
+  timeout: 10 * 1000,
+  
 })
 
 const http = {

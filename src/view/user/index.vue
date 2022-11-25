@@ -2,7 +2,7 @@
 <template>
 <div id="content">
   <el-card class="box-card">
-    <!-- 搜索组件 -->
+    <!-- 搜索组件，存在一些重复的搜索项，把他们做成可配置的 -->
     <search 
     :searchData="search" :searchFunc="getTableData" :searchReset="searchReset"
     :show="['sex', 'id', 'nickname', 'phone', 'button']"></search>

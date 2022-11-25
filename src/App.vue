@@ -13,8 +13,6 @@
     <router-view></router-view>
   </div>
 
-  <!-- 全局加载遮罩 -->
-  <!-- <div v-loading.fullscreen.lock="!isReady"  element-loading-text="拼命加载中"></div> -->
 
 </div>
 </template>
@@ -41,6 +39,10 @@ export default {
     $route(to, from){
       this.isLogin = JWT.IsLogin()
       this.routeChange(to)
+      // 登录过期
+      if (!this.isLogin && this.isReady) {
+        this.$message.warning("登录已过期")
+      }
     }
   },
   created() {
@@ -59,15 +61,6 @@ export default {
         this.isReady = true
       })
     }
-    // 全局遮罩
-    // setTimeout( _=> {
-    //   if (!this.isReady) {
-    //     this.$message.error('加载失败，请稍后重试')
-    //   }
-    // }, 5000);
-  },
-  mounted() {
-
   },
   methods: {
     // 判断路由是否存在，如果不存在，跳转到主页
@@ -76,9 +69,10 @@ export default {
         this.$router.push('/dashboard/index')
       }
     },
-    // 获取基础配置
+    // 获取基础配置(比较全局的，例如一些后端配置的选项)
     getBaseConfig() {
       // return this.$http.get().then(data => {})
+      // 模拟API请求
       return new Promise(resolve => {
         resolve(_=>{
           this.$set(Vue.prototype, '$platform', 'Andriod')
@@ -89,6 +83,7 @@ export default {
     // 获取菜单
     getMenu() {
       // return this.$http.get('/v1/menu/list').then(data => {})
+      // 模拟API请求
       return new Promise(resolve => {
         resolve(this.$set(Vue.prototype, '$menuList', [
           {id: 1, name: '数据总览', path: '/dashboard/index', children: []},
@@ -120,6 +115,8 @@ export default {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    height: 100%;
   }
 
   #container {

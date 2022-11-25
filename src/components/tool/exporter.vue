@@ -49,7 +49,7 @@ export default {
       });
       var downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = this.filename + this.$time.datetime('Ymds') + ".csv"; 
+      downloadLink.download = this.filename + new this.$timer().Format("Ymds") + ".csv"; 
       downloadLink.click();
     },
     generate() {

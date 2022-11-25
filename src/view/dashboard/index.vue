@@ -1,13 +1,9 @@
 <template lang="">
 <el-card id="content" class="box-card">
-  <!-- 筛选 -->
-  <!-- <div slot="header" class="clearfix" >
-
-  </div> -->
   <!-- 卡片 -->
   <template v-for="(item, i) in cards">
     <el-card :key="i" :class="`card ` + (item.click ? 'can-click' : '') + ' ' + (currentCardIndex == i ? 'on-click' : '')"
-      @click.native="choseCard(item, i)" > 
+      @click.native="choseCard(i)" > 
       <div class="title">{{item.title}}</div>
       <div class="number">{{item.number}}</div>
       <div style="font-size:14px;">
@@ -36,15 +32,15 @@ export default {
   data() {
     return {
       cards: [
-        {title: 'A指标', number: -1, compare: -12.3, click: true},
-        {title: 'B指标', number: -1, compare: 13.4, click: true},
-        {title: 'C指标', number: -1, compare: -34.2},
-        {title: 'D指标', number: -1, compare: 12.3},
-        {title: 'E指标', number: -1, compare: 12.3},
+        {title: '', number: 0, compare: 0, click: false},
+        {title: '', number: 0, compare: 0, click: false},
+        {title: '', number: 0, compare: 0, click: false},
+        {title: '', number: 0, compare: 0, click: false},
+        {title: '', number: 0, compare: 0, click: false},
      
       ],
       search: {},
-      currentCardIndex: 0,
+      currentCardIndex: -1,
       chartOption: {
         title: {
           text: '',
@@ -54,9 +50,11 @@ export default {
   },
   mounted() {
     this.getCardsData()
+    
   },
   methods: {
-    choseCard(card, i) {
+    choseCard(i) {
+      let card = this.cards[i]
       if (!card.click) {
         return 
       }
@@ -64,9 +62,47 @@ export default {
         return
       }
       this.currentCardIndex = i
+      this.chartOption.title.text = card.title
+      this.chartOption.xAxis =  [{
+        type: 'category',
+        boundaryGap: false,
+        data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55']
+      }],
+      this.chartOption.series =  [{
+        name: '今天',
+        type: 'line',
+        symbol: 'circle',
+        symbolSize: 8,
+        data: this.testRandomArray(12)
+      }, {
+        name: '昨天',
+        type: 'line',
+        symbol: 'circle',
+        symbolSize: 8,
+        data: this.testRandomArray(12)
+      }]
     },
     getCardsData() {
+      // 模拟API
+      this.$defer(100).then(_=>{
+        this.cards = [
+          {title: 'A指标', number: this.$random(1000), compare: -12.3, click: true},
+          {title: 'B指标', number: this.$random(1000), compare: 13.4, click: true},
+          {title: 'C指标', number: this.$random(1000), compare: -34.2, click: true},
+          {title: 'D指标', number: this.$random(1000), compare: 12.3, click: true},
+          {title: 'E指标', number: this.$random(1000), compare: 12.3, click: true},
+        ]
+        this.choseCard(0)
+      })
+    },
 
+    testRandomArray(n) {
+      let array = []
+      let rand =  this.$random(1000)
+      for (let i = 0; i < n; i++) {
+        array.push(this.$random(rand) + 100)
+      }
+      return array;
     }
   },
 

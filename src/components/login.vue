@@ -1,11 +1,10 @@
 <template lang="">
-<div>
+<div id="dialog">
   <div id="login">
-    <img src="../assets/img/logo.png" alt="">
     <p>Demo后台管理系统</p>
     <el-input v-model="form.username" type="text" placeholder="账户" class="mb20"></el-input>
     <el-input v-model="form.password" type="password" placeholder="密码" class="mb20"></el-input>
-    <div class="mb20"><el-checkbox v-model="autoLogin">自动登录</el-checkbox></div>
+    <div class="mb20"><el-checkbox v-model="autoLogin">记住密码</el-checkbox></div>
     <el-button type="primary" @click="submit" :loading="loading">登&nbsp;&nbsp;录</el-button>
   </div>
 
@@ -50,14 +49,25 @@ export default {
       sessionStorage.setItem('username', this.form.username)
 
       this.loading = true
+
+      // 模拟登录API
+      // this.$http.post('login', this.form).then(data=>{}).catch(err=>{})
+      this.$defer(200).then(_=>{
+        if (this.form.username == "admin" && this.form.password == "123456") {
+          JWT.Set("321eewd322432d") // JWT，本文jwt存储在cookie里。一般JWT放在Header里，以token的形式
+          location.reload()
+        } else {
+          this.$message.error("账号密码错误! (提示：admin,123456)")
+          this.loading = false
+        }
+      })
       
       // this.$http.post('login', this.form).then(data=>{
+      //   JWT.Set("d39dswe23sdfhref")
       //   location.reload()
       // }).catch(err => {
       //   this.loading = false
       // })
-      JWT.Set("xxx")
-      location.reload()
     },
 
   }
@@ -72,31 +82,38 @@ export default {
     margin: 0;
     padding: 0;
   }
-  #login {
-    width: 400px;
-    height: 400px;
-    margin: 100px auto;
-    background-color: #F0F2F6;
-    font-size: 24px;
-    text-align: center;
-    
+  #dialog {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(120deg, #E971AE, #3C96E4);
   }
-  #login img {
-    width: 200px;
+  #login {
+    width:330px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px 40px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    opacity: 0.8;
   }
   #login p {
-    font-size: 16px;
-    color: #898B8D;
+    font-size: 24px;
+    color: #fff;
   }
   #login div {
     text-align: left;
   }
-  #login .el-button {
-    width:100%;
-  }
-
   #footer {
     position: absolute;
     bottom: 20px;
+  }
+  #login .el-button {
+    border: none;
+    width:100%;
+   
   }
 </style>

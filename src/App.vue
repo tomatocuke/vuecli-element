@@ -39,10 +39,6 @@ export default {
     $route(to, from){
       this.isLogin = JWT.IsLogin()
       this.routeChange(to)
-      // 登录过期
-      if (!this.isLogin && this.isReady) {
-        this.$message.warning("登录已过期")
-      }
     }
   },
   created() {

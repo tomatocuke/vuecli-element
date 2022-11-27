@@ -53,11 +53,11 @@ export default {
       // 模拟登录API
       // this.$http.post('login', this.form).then(data=>{}).catch(err=>{})
       this.$defer(200).then(_=>{
-        if (this.form.username == "admin" && this.form.password == "123456") {
+        if (this.form.username == "demo" && this.form.password == "123456") {
           JWT.Set("321eewd322432d") // JWT，本文jwt存储在cookie里。一般JWT放在Header里，以token的形式
           location.reload()
         } else {
-          this.$message.error("账号密码错误! (提示：admin,123456)")
+          this.$message.error("账号密码错误! (提示：demo,123456)")
           this.loading = false
         }
       })
